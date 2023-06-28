@@ -33,17 +33,12 @@ jobs:
     - name: Set node version
       run: |
         source ./node_version
-        if [[ ${{ matrix.tag }} == "lts" ]]; then
-            echo "DIST=$LTS_DIST" >> "$GITHUB_ENV"
-            echo "VERSION=$LTS_VERSION" >> "$GITHUB_ENV"
-        else
-            echo "DIST=$CURRENT_DIST" >> "$GITHUB_ENV"
-            echo "VERSION=$CURRENT_VERSION" >> "$GITHUB_ENV"
-        fi
+        echo "DIST=$LTS_DIST" >> "$GITHUB_ENV"
+        echo "VERSION=$LTS_VERSION" >> "$GITHUB_ENV"
 
     - name: Download node source code
       run: |
-        wget https://nodejs.org/dist/latest-v${{ env.DIST }}/node-v${{ env.VERSION }}.tar.xz
+        wget https://nodejs.org/dist/v${{ env.DIST }}/node-v${{ env.VERSION }}.tar.xz
         tar -Jxf node-v${{ env.VERSION }}.tar.xz
 
     - name: Build node
