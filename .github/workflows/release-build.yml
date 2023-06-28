@@ -12,9 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         container: ["centos:7"]
-        tag:
-          - lts
-          - current
 
     container:
       image: ${{ matrix.container }}
