@@ -33,12 +33,13 @@ jobs:
     - name: Set node version
       run: |
         source ./node_version
-        echo "DIST=$LTS_DIST" >> "$GITHUB_ENV"
+        echo "$LTS_VERSION"
         echo "VERSION=$LTS_VERSION" >> "$GITHUB_ENV"
 
     - name: Download node source code
       run: |
-        wget https://nodejs.org/dist/v${{ env.DIST }}/node-v${{ env.VERSION }}.tar.xz
+        echo "https://nodejs.org/dist/v${{ env.VERSION }}/node-v${{ env.VERSION }}.tar.xz"
+        wget https://nodejs.org/dist/v${{ env.VERSION }}/node-v${{ env.VERSION }}.tar.xz
         tar -Jxf node-v${{ env.VERSION }}.tar.xz
 
     - name: Build node
