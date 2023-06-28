@@ -53,13 +53,7 @@ jobs:
         tar zcvf tar/node-v${{ env.VERSION }}-linux-x$(getconf LONG_BIT).tar.gz node-v${{ env.VERSION }}-linux-x$(getconf LONG_BIT)
         cd tar && sha256sum node-v* > sha256sum.txt
 
-    - name: Create release
-      uses: ncipollo/release-action@v1
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v3
       with:
-        name: node-v${{ env.VERSION }}
-        allowUpdates: true
-        tag: v${{ env.VERSION }}
-        commit: master
-        replacesArtifacts: true
-        token: ${{ secrets.workflow_token }}
-        artifacts: tar/*
+        path: tar/*
